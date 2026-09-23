@@ -1,0 +1,28 @@
+{
+  "name": "product-manual-automation",
+  "version": "0.1.0",
+  "description": "Generate evidence-backed Markdown product manuals for WeChat Mini Programs and desktop web applications.",
+  "author": {
+    "name": "Product Manual Automation Team"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Product Manual Automation",
+    "shortDescription": "Build reviewed Markdown manuals from source and runtime evidence.",
+    "longDescription": "Scans WeChat Mini Program and desktop web projects, reconstructs user operations, records source/runtime/database evidence, produces privacy-safe annotated screenshots, and renders strictly validated Markdown manuals.",
+    "developerName": "Product Manual Automation Team",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Generate a function-first product manual for this project.",
+      "Audit and incrementally update the existing product manual.",
+      "Open the screenshot review queue and resolve pending items."
+    ],
+    "brandColor": "#2563EB"
+  },
+  "mcpServers": "./.mcp.json"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Manual Review"
+  short_description: "Review annotations, redactions, and screenshots"
+  default_prompt: "Use $product-manual-review to open the visual review queue, correct affected objects, and preserve approved unaffected work."

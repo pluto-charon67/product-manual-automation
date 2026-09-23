@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Manual WeChat"
+  short_description: "Discover and verify WeChat manual operations"
+  default_prompt: "Use $product-manual-wechat to analyze this native or uni-app WeChat project and verify its manual operation variants."

@@ -1,0 +1,24 @@
+{
+  "profiles": [
+    {
+      "id": "development-mysql",
+      "engine": "mysql",
+      "host": "127.0.0.1",
+      "port": 3306,
+      "database": "app_development",
+      "user": "manual_reader",
+      "environment": "development",
+      "productionLike": false,
+      "passwordEnv": "PRODUCT_MANUAL_MYSQL_PASSWORD",
+      "maxRows": 100,
+      "timeoutMs": 10000,
+      "sensitiveColumns": ["customer_name"]
+    },
+    {
+      "id": "local-sqlite",
+      "engine": "sqlite",
+      "filename": "/absolute/path/to/app.sqlite",
+      "maxRows": 100
+    }
+  ]
+}

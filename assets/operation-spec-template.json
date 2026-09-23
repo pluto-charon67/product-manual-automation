@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "OP-MODULE-ACTION",
+  "title": "功能名称",
+  "moduleId": "MOD-MODULE",
+  "moduleName": "功能模块",
+  "businessNodeId": "NODE-MODULE-STAGE",
+  "businessNodeName": "业务节点",
+  "kind": "main-flow",
+  "scenario": "需要完成该功能时使用。",
+  "prerequisites": [],
+  "result": "操作完成后可见的业务结果。",
+  "capabilityIds": [],
+  "manualAnchor": "op-module-action",
+  "businessErrors": [],
+  "platformVariants": {
+    "web": {
+      "id": "VAR-MODULE-ACTION-WEB",
+      "entryPath": "系统入口 → 模块 → 功能入口",
+      "executionTier": "C",
+      "executionStatus": "not-run",
+      "transitions": [],
+      "sequenceImages": []
+    }
+  },
+  "publication": "draft"
+}

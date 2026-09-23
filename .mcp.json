@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "product-manual": {
+      "command": "node",
+      "args": [
+        "${PLUGIN_ROOT}/mcp-server/index.mjs"
+      ]
+    }
+  }
+}

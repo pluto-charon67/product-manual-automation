@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>产品手册截图审阅</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>产品手册截图审阅</h1>
+        <p id="summary">正在读取审阅队列…</p>
+      </div>
+      <div class="toolbar">
+        <label>模式
+          <select id="review-mode">
+            <option value="all">全部审核</option>
+            <option value="risky">仅风险项</option>
+            <option value="none">关闭审核</option>
+          </select>
+        </label>
+        <label>筛选
+          <select id="status-filter">
+            <option value="all">全部</option>
+            <option value="pending">待审核</option>
+            <option value="approved">已通过</option>
+            <option value="rejected">已退回</option>
+          </select>
+        </label>
+        <button id="refresh">刷新</button>
+      </div>
+    </header>
+    <main class="layout">
+      <aside class="sidebar">
+        <div id="capture-list" class="capture-list"></div>
+      </aside>
+      <section class="stage-panel">
+        <div class="stage-toolbar">
+          <button data-view="raw" class="view-button active">原图 + 可编辑覆盖层</button>
+          <button data-view="redacted" class="view-button">脱敏图</button>
+          <button data-view="annotated" class="view-button">最终标注图</button>
+          <button id="approve-capture" class="primary">整张通过</button>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="review-canvas"></canvas>
+          <div id="empty-state">请选择一张截图</div>
+        </div>
+      </section>
+      <aside class="inspector">
+        <h2>对象属性</h2>
+        <div id="object-list"></div>
+        <form id="object-form" hidden>
+          <div class="field"><label>ID</label><input id="object-id" readonly></div>
+          <div class="field"><label>类型</label><input id="object-type" readonly></div>
+          <div class="field-grid">
+            <label>X<input id="geo-x" type="number" step="1"></label>
+            <label>Y<input id="geo-y" type="number" step="1"></label>
+            <label>宽<input id="geo-width" type="number" step="1" min="1"></label>
+            <label>高<input id="geo-height" type="number" step="1" min="1"></label>
+          </div>
+          <div id="label-point-fields" class="field-grid">
+            <label>编号 X<input id="label-x" type="number" step="1"></label>
+            <label>编号 Y<input id="label-y" type="number" step="1"></label>
+          </div>
+          <div class="field"><label>来源</label><input id="object-source" readonly></div>
+          <div class="field"><label>置信度</label><input id="object-confidence" readonly></div>
+          <div class="actions">
+            <button type="submit" class="primary">保存修改</button>
+            <button type="button" id="approve-object">通过</button>
+            <button type="button" id="reject-object" class="danger">退回</button>
+          </div>
+        </form>
+        <p id="inspector-hint">点击截图中的箭头目标框、编号圆点或脱敏区域进行局部调整。</p>
+      </aside>
+    </main>
+    <div id="toast" role="status"></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

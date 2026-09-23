@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Manual Template"
+  short_description: "Configure and validate Markdown manual output"
+  default_prompt: "Use $product-manual-template to render confirmed operations with the configured Markdown template and validate publication readiness."

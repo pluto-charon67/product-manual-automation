@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Manual Automation"
+  short_description: "Generate reviewed manuals for WeChat and web products"
+  default_prompt: "Use $product-manual-automation to generate or update a function-first Markdown product manual from source, runtime, and optional database evidence."

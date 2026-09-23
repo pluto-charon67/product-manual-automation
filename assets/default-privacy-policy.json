@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "status": "pending",
+  "defaultAction": "solid-mask",
+  "preserveUnlistedContent": true,
+  "preserveFunctionalControls": true,
+  "preserveFilterControlsAndValues": true,
+  "categories": [
+    { "id": "person-name", "label": "姓名", "enabled": true, "action": "partial-mask" },
+    { "id": "phone", "label": "电话", "enabled": true, "action": "partial-mask" },
+    { "id": "id-card", "label": "身份证件", "enabled": true, "action": "solid-mask" },
+    { "id": "email", "label": "邮箱", "enabled": true, "action": "partial-mask" },
+    { "id": "address", "label": "详细地址", "enabled": true, "action": "solid-mask" },
+    { "id": "financial", "label": "财务与账户信息", "enabled": true, "action": "solid-mask" }
+  ],
+  "rules": [],
+  "protectedElements": [
+    "action-target",
+    "page-title",
+    "dialog-title",
+    "field-label",
+    "status-label",
+    "button-text",
+    "tab-label",
+    "confirmation-message",
+    "success-message",
+    "filter-control"
+  ],
+  "confirmedAt": null,
+  "confirmedBy": null
+}

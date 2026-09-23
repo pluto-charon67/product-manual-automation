@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "annotationEnabled": true,
+  "style": "number-arrow",
+  "color": "#ff1f0f",
+  "lineWidth": 5,
+  "numberRadius": 18,
+  "reviewMode": "all",
+  "requireAnnotationReview": true,
+  "requireRedactionReview": true,
+  "confidenceThreshold": 0.9,
+  "longSequenceColumns": 3,
+  "longSequenceThreshold": 4
+}

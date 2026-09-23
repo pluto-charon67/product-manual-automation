@@ -1,0 +1,73 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  color: #172033;
+  background: #eef2f7;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 1080px; }
+button, input, select { font: inherit; }
+button { border: 1px solid #c7d0df; border-radius: 8px; padding: 8px 12px; background: #fff; cursor: pointer; }
+button:hover { border-color: #2563eb; }
+button.primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+button.danger { color: #b42318; border-color: #f0b7b3; }
+
+.topbar {
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 22px;
+  background: #fff;
+  border-bottom: 1px solid #dce3ed;
+}
+.topbar h1 { margin: 0 0 5px; font-size: 20px; }
+.topbar p { margin: 0; color: #637087; font-size: 13px; }
+.toolbar, .stage-toolbar, .actions { display: flex; align-items: center; gap: 10px; }
+.toolbar label { display: flex; align-items: center; gap: 6px; color: #526077; font-size: 13px; }
+.toolbar select { padding: 7px 10px; border: 1px solid #c7d0df; border-radius: 7px; background: #fff; }
+
+.layout { height: calc(100vh - 84px); display: grid; grid-template-columns: 270px minmax(540px, 1fr) 320px; }
+.sidebar, .inspector { overflow: auto; background: #fff; }
+.sidebar { border-right: 1px solid #dce3ed; }
+.inspector { border-left: 1px solid #dce3ed; padding: 18px; }
+.inspector h2 { margin: 0 0 14px; font-size: 17px; }
+
+.capture-list { padding: 10px; display: grid; gap: 8px; }
+.capture-card { width: 100%; text-align: left; padding: 11px; display: grid; gap: 5px; }
+.capture-card.active { border-color: #2563eb; box-shadow: 0 0 0 2px #dbeafe; }
+.capture-card strong { font-size: 13px; overflow: hidden; text-overflow: ellipsis; }
+.capture-card span { color: #637087; font-size: 12px; }
+.status { width: fit-content; padding: 2px 7px; border-radius: 999px; font-size: 11px; }
+.status.pending { background: #fff3cd; color: #7a4d00; }
+.status.approved { background: #dcfce7; color: #166534; }
+.status.rejected { background: #fee2e2; color: #991b1b; }
+.status.bypassed { background: #e5e7eb; color: #4b5563; }
+
+.stage-panel { min-width: 0; display: flex; flex-direction: column; }
+.stage-toolbar { padding: 10px 14px; background: #f8fafc; border-bottom: 1px solid #dce3ed; }
+.view-button.active { color: #1d4ed8; background: #eff6ff; border-color: #93c5fd; }
+.stage-toolbar #approve-capture { margin-left: auto; }
+.canvas-wrap { position: relative; flex: 1; overflow: auto; display: grid; place-items: start center; padding: 24px; background: #dce3ed; }
+#review-canvas { background: #fff; box-shadow: 0 8px 30px rgb(34 52 78 / 18%); max-width: 100%; height: auto; cursor: crosshair; }
+#empty-state { margin-top: 120px; color: #637087; }
+
+#object-list { display: grid; gap: 7px; margin-bottom: 16px; }
+.object-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; text-align: left; }
+.object-row.active { border-color: #2563eb; background: #eff6ff; }
+.object-row .meta { min-width: 0; display: grid; gap: 2px; }
+.object-row .meta strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; }
+.object-row .meta span { color: #637087; font-size: 11px; }
+
+#object-form { display: grid; gap: 12px; border-top: 1px solid #e4e9f0; padding-top: 16px; }
+.field { display: grid; gap: 5px; }
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.field label, .field-grid label { color: #526077; font-size: 12px; display: grid; gap: 5px; }
+.field input, .field-grid input { width: 100%; border: 1px solid #c7d0df; border-radius: 7px; padding: 7px 8px; background: #fff; }
+input[readonly] { background: #f4f6f9; color: #637087; }
+#inspector-hint { color: #637087; font-size: 12px; line-height: 1.6; }
+
+#toast { position: fixed; right: 22px; bottom: 22px; padding: 11px 15px; border-radius: 9px; background: #172033; color: #fff; opacity: 0; transform: translateY(8px); pointer-events: none; transition: 160ms ease; }
+#toast.visible { opacity: 1; transform: translateY(0); }

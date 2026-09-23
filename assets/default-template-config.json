@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "profile": "function-first",
+  "title": "产品操作手册",
+  "includeBusinessNodes": true,
+  "includeBusinessErrors": true,
+  "headings": {
+    "scenario": "适用场景",
+    "result": "操作结果",
+    "screenshots": "操作步骤截图",
+    "errors": "异常说明"
+  },
+  "imageWidth": 760,
+  "criticalStateEmphasis": "<span style=\"color:red\">{{text}}</span>",
+  "platformLabels": {
+    "wechat": "微信小程序",
+    "web": "PC 网页"
+  }
+}

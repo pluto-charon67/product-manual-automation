@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Manual Web"
+  short_description: "Discover and verify desktop web operations"
+  default_prompt: "Use $product-manual-web to analyze this web product from source and runtime UI, then build repeatable manual operations."
