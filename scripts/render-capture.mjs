@@ -66,7 +66,7 @@ if (visual.annotationEnabled !== false) {
     annotationSvg.push(`<rect x="${Math.round(target.x)}" y="${Math.round(target.y)}" width="${Math.round(target.width)}" height="${Math.round(target.height)}" fill="none" stroke="${color}" stroke-width="${Math.max(2, lineWidth - 2)}" rx="4"/>`);
     annotationSvg.push(`<line x1="${labelX}" y1="${labelY}" x2="${targetX}" y2="${targetY}" stroke="${color}" stroke-width="${lineWidth}" marker-end="url(#arrow)"/>`);
     annotationSvg.push(`<circle cx="${labelX}" cy="${labelY}" r="${radius}" fill="${color}"/>`);
-    annotationSvg.push(`<text x="${labelX}" y="${labelY + 7}" text-anchor="middle" font-family="Arial,sans-serif" font-size="${Math.round(radius * 1.1)}" font-weight="700" fill="#fff">${number}</text>`);
+    annotationSvg.push(`<text x="${labelX}" y="${labelY + 7}" text-anchor="middle" font-family="Arial,'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif" font-size="${Math.round(radius * 1.1)}" font-weight="700" fill="#fff">${number}</text>`);
   }
 }
 const overlay = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="${visual.color ?? "#ff1f0f"}"/></marker></defs>${annotationSvg.join("")}</svg>`;

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import { execFile } from "node:child_process";
-import fs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
 import { parseArgs, pathExists, requireArg } from "./lib/common.mjs";
+import { wechatDevtoolsCandidates, wechatideSkillCandidates } from "./lib/platform-paths.mjs";
 
 const execute = promisify(execFile);
 const args = parseArgs();
@@ -34,16 +34,13 @@ if (platforms.includes("web")) {
   }
 }
 if (platforms.includes("wechat")) {
-  const appCandidates = [
-    "/Applications/wechatwebdevtools.app",
-    "/Applications/微信开发者工具.app",
-    path.join(process.env.HOME ?? "", "Applications", "微信开发者工具.app")
-  ];
-  checks.push({ name: "wechat-devtools", status: (await Promise.all(appCandidates.map(pathExists))).some(Boolean) ? "passed" : "missing", detail: appCandidates.join(", ") });
-  const skillCandidates = [
-    path.join(process.env.HOME ?? "", ".codex", "skills", "wechatide-skill", "SKILL.md"),
-    path.join(process.env.HOME ?? "", ".agents", "skills", "wechatide-skill", "SKILL.md")
-  ];
+  const appCandidates = wechatDevtoolsCandidates();
+  const appDetected = (await Promise.all(appCandidates.map(pathExists))).some(Boolean);
+  const appDetail = appCandidates.length
+    ? appCandidates.join(", ")
+    : `No default installation path is defined for ${process.platform}; set PRODUCT_MANUAL_WECHAT_DEVTOOLS_PATH`;
+  checks.push({ name: "wechat-devtools", status: appDetected ? "passed" : "missing", detail: appDetail });
+  const skillCandidates = wechatideSkillCandidates();
   checks.push({ name: "wechatide-skill", status: (await Promise.all(skillCandidates.map(pathExists))).some(Boolean) ? "passed" : "missing", detail: skillCandidates.join(", ") });
 }
 

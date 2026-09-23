@@ -140,7 +140,7 @@ Capability Graph 与 Operation 规划
 | Node.js | 22.5 或更高版本 |
 | npm | 与 Node.js 配套的可用版本 |
 | Codex | 用于加载 Plugin、调用 Skills 和本地 MCP |
-| 操作系统 | 当前主要面向可运行 Codex、浏览器及微信开发者工具的本地环境 |
+| 操作系统 | macOS 或 Windows；路径检测、CLI 参数和 JSON 配置均支持对应系统的路径风格 |
 
 检查本机版本：
 
@@ -160,6 +160,22 @@ codex --version
 - 能够进入目标功能的测试账号和测试数据。
 
 uni-app 必须提供最新编译产物，是因为微信开发者工具实际运行的是 mp-weixin 输出，而不是 Vue 源码本身。旧产物或缺失产物会让截图、页面结构和当前源码不一致，因此 Plugin 会在产物缺失或落后于源码时阻止运行验证。
+
+Plugin 会自动检查 macOS 与 Windows 上常见的微信开发者工具安装目录。如果安装在自定义位置，可通过环境变量指定：
+
+macOS：
+
+```bash
+export PRODUCT_MANUAL_WECHAT_DEVTOOLS_PATH="/Applications/微信开发者工具.app"
+```
+
+Windows PowerShell：
+
+```powershell
+$env:PRODUCT_MANUAL_WECHAT_DEVTOOLS_PATH = "C:\Program Files (x86)\Tencent\微信web开发者工具"
+```
+
+也兼容 `WECHAT_DEVTOOLS_PATH`。当两个变量同时存在时，优先使用 `PRODUCT_MANUAL_WECHAT_DEVTOOLS_PATH`。
 
 ### PC 网页环境
 
@@ -233,7 +249,14 @@ Marketplace 配置示例：
 注册 Marketplace 并安装 Plugin：
 
 ```bash
-codex plugin marketplace add /absolute/path/to/<marketplace-root>
+codex plugin marketplace add "/absolute/path/to/<marketplace-root>"
+codex plugin add product-manual-automation@product-manual-local
+```
+
+Windows PowerShell 示例：
+
+```powershell
+codex plugin marketplace add "C:\Users\name\plugins\product-manual-marketplace"
 codex plugin add product-manual-automation@product-manual-local
 ```
 
@@ -256,6 +279,14 @@ codex plugin list --available
 ```bash
 node scripts/init-workspace.mjs \
   --project /absolute/path/to/product-project \
+  --platforms wechat,web
+```
+
+Windows PowerShell：
+
+```powershell
+node scripts/init-workspace.mjs `
+  --project "C:\projects\product-project" `
   --platforms wechat,web
 ```
 
@@ -319,6 +350,39 @@ node scripts/preflight.mjs \
 ├── visual-policy.json
 └── database-profiles.json
 ```
+
+### 跨平台路径约定
+
+CLI 参数与 JSON 配置都接受当前操作系统的绝对路径。路径包含空格或中文时，命令行中应使用引号包裹。
+
+macOS 配置示例：
+
+```json
+{
+  "repositoryRoot": "/Users/name/projects/product-project",
+  "backendRoot": "/Users/name/projects/product-backend"
+}
+```
+
+Windows 配置推荐使用正斜杠，避免 JSON 反斜杠转义：
+
+```json
+{
+  "repositoryRoot": "C:/projects/product-project",
+  "backendRoot": "D:/services/product-backend"
+}
+```
+
+也可以使用 Windows 原生反斜杠，但 JSON 中必须写成双反斜杠：
+
+```json
+{
+  "repositoryRoot": "C:\\projects\\product-project",
+  "backendRoot": "D:\\services\\product-backend"
+}
+```
+
+`outputRoot` 等相对路径建议统一写成 `docs/product-manual`。Plugin 内部持久化的相对路径与 Markdown 图片引用始终使用 `/`，从而让生成产物可在 macOS、Windows 和 Git 之间稳定迁移。配置文件中的 `~`、`$HOME`、`%USERPROFILE%` 不会自动展开，应填写实际路径或通过受支持的环境变量传入。
 
 ### 项目配置
 
@@ -590,10 +654,18 @@ review_set_mode
 }
 ```
 
+Windows 上将 SQLite 路径写为 `C:/data/app.sqlite`，或在 JSON 中写为 `C:\\data\\app.sqlite`。
+
 数据库密码只能由 passwordEnv 指向环境变量，禁止把密码、Token、连接串或其他凭据写入配置文件：
 
 ```bash
 export PRODUCT_MANUAL_MYSQL_PASSWORD='<database-password>'
+```
+
+Windows PowerShell：
+
+```powershell
+$env:PRODUCT_MANUAL_MYSQL_PASSWORD = '<database-password>'
 ```
 
 数据库安全边界：

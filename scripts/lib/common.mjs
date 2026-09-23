@@ -101,10 +101,11 @@ export async function sha256File(target) {
   return hash.digest("hex");
 }
 
-export function resolveInside(root, candidate) {
-  const absoluteRoot = path.resolve(root);
-  const absolute = path.resolve(absoluteRoot, candidate);
-  if (absolute !== absoluteRoot && !absolute.startsWith(`${absoluteRoot}${path.sep}`)) {
+export function resolveInside(root, candidate, pathApi = path) {
+  const absoluteRoot = pathApi.resolve(root);
+  const absolute = pathApi.resolve(absoluteRoot, candidate);
+  const relative = pathApi.relative(absoluteRoot, absolute);
+  if (relative === ".." || relative.startsWith(`..${pathApi.sep}`) || pathApi.isAbsolute(relative)) {
     throw new Error(`Path escapes allowed root: ${candidate}`);
   }
   return absolute;
@@ -161,8 +162,8 @@ export async function copyJsonTemplate(name) {
   return readJson(path.join(pluginRoot, "assets", name));
 }
 
-export function relativePortable(root, target) {
-  return path.relative(root, target).split(path.sep).join("/");
+export function relativePortable(root, target, pathApi = path) {
+  return pathApi.relative(root, target).split(pathApi.sep).join("/");
 }
 
 export function assertUnique(items, field, label = field) {

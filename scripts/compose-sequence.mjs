@@ -49,7 +49,7 @@ for (let index = 0; index < items.length; index += 1) {
   const left = gap + column * (cellWidth + gap) + Math.floor((cellWidth - item.width) / 2);
   composites.push({ input: item.buffer, left, top: rowTop });
   const lines = wrapCaption(item.caption ?? item.label ?? "", Number(spec.captionCharactersPerLine ?? 20));
-  const text = lines.map((line, lineIndex) => `<text x="${cellWidth / 2}" y="${26 + lineIndex * 22}" text-anchor="middle" font-family="Arial,'PingFang SC',sans-serif" font-size="16" fill="#111827">${escapeXml(line)}</text>`).join("");
+  const text = lines.map((line, lineIndex) => `<text x="${cellWidth / 2}" y="${26 + lineIndex * 22}" text-anchor="middle" font-family="Arial,'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif" font-size="16" fill="#111827">${escapeXml(line)}</text>`).join("");
   const caption = `<svg width="${cellWidth}" height="${captionHeight}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#ffffff"/>${text}</svg>`;
   composites.push({ input: Buffer.from(caption), left: gap + column * (cellWidth + gap), top: rowTop + item.height });
 }
