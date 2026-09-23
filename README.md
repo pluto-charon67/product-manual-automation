@@ -63,8 +63,6 @@ Plugin 内置 5 个相互协作的 Skills：
 | product-manual-template | Markdown 模板配置、渲染规则和发布结构校验 |
 | product-manual-review | 截图脱敏、标注、对象级审阅和局部失效控制 |
 
-本 Plugin 独立运行，不会修改、覆盖或依赖原有的 generate-miniprogram-user-manual Skill 工作目录。
-
 ## 核心设计
 
 ### 功能优先，而不是角色优先
